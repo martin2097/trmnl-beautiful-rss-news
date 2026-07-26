@@ -1,0 +1,136 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 3.1.1
+serverless_language: python
+polling_url: https://example.com
+polling_headers: ''
+polling_body: ''
+id: 395962
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
+custom_fields:
+- keyname: feed_presets_essentials
+  field_type: select
+  multiple: true
+  optional: true
+  name: Essentials
+  help_text: Choose any number of publications. Hold <kbd>Ctrl</kbd> on Windows or <kbd>Command</kbd> on Mac while clicking to add or remove individual choices.
+  description: Familiar, widely read publications.
+  options:
+  - BBC News: bbc-news-top
+  - The New York Times: nytimes-world
+  - The Guardian: guardian-world
+  - Fox News: fox-news-latest
+  - ABC News: abc-news-us
+  - Wall Street Journal: wsj-world-news
+  - Financial Times: financial-times-home
+  - Sky News: sky-news-world
+- keyname: feed_presets_topics
+  field_type: select
+  multiple: true
+  optional: true
+  name: Topics
+  help_text: Choose any number of publications. Hold <kbd>Ctrl</kbd> on Windows or <kbd>Command</kbd> on Mac while clicking to add or remove individual choices.
+  description: Follow the subjects you care about—from technology and space to sports, climate, music, and culture.
+  options:
+  - "[Technology] BBC News — Technology": bbc-news-technology
+  - "[Technology] Wired": wired
+  - "[Technology] Ars Technica": ars-technica
+  - "[Technology] IEEE Spectrum": ieee-spectrum
+  - "[Technology] 404 Media": 404-media
+  - "[Technology] Rest of World — Latest": rest-of-world
+  - "[Science & Environment] BBC News — Science & Environment": bbc-news-science-environment
+  - "[Science & Environment] The New York Times — Climate": nytimes-climate
+  - "[Science & Environment] Mongabay": mongabay
+  - "[Space] NASA — News Releases": nasa-news-releases
+  - "[Space] Space.com": space-com
+  - "[Space] SpaceNews": space-news
+  - "[Sports] BBC Sport — Top Stories": bbc-sport-top
+  - "[Sports] Sky Sports — News": sky-sports-news
+  - "[Sports] BBC Sport — Formula 1": bbc-sport-formula-1
+  - "[Finance] Watcher.Guru": watcher-guru
+  - "[Music] Pitchfork": pitchfork-news
+  - "[Arts & Culture] Colossal": colossal
+  - "[Arts & Culture] Hyperallergic": hyperallergic
+- keyname: feed_presets_regional
+  field_type: select
+  multiple: true
+  optional: true
+  name: Regional
+  help_text: Choose any number of publications. Hold <kbd>Ctrl</kbd> on Windows or <kbd>Command</kbd> on Mac while clicking to add or remove individual choices.
+  description: Look beyond the boarders with respected national and regional publications from around the world.
+  options:
+  - El País — In English: elpais-english
+  - Le Monde — World in English: le-monde-world-english
+  - The Guardian — Australia: guardian-australia
+  - Global News — Canada: global-news-canada
+  - France 24 — English: france24-english
+  - Tagesschau.de — Germany: tagesschau-germany
+  - NOS — Netherlands: nos-netherlands
+  - Dagens Nyheter — Sweden: dn-sweden
+  - CNA — Asia: cna-asia
+  - SoraNews24 — Japan: soranews24
+  - Africanews: africanews
+  - České noviny — Zprávy: ceske-noviny
+  - Buenos Aires Times: buenos-aires-times
+  - Balkan Insight: balkan-insight
+- keyname: feed_urls
+  field_type: multi_string
+  optional: true
+  name: Add your own feeds with RSS
+  description: |
+    Can’t find a favorite publication above? Add its RSS feed here. An RSS feed is a special link that lets Beautiful RSS News collect the publication’s latest stories automatically—no account or API key required.
+    <br/><br/>
+
+    To find one, look for an RSS icon or an “RSS” or “Feeds” link in the publication’s footer. You can also try adding <strong>/rss</strong>, <strong>/feed</strong>, or <strong>/feeds</strong> to its website address, or search for the publication’s name followed by “RSS feed.”
+    <br/><br/>
+
+    Paste the RSS feed link—not the publication’s homepage or an individual article. Add one feed per field. Feeds that include story images will look best.
+  placeholder: https://example.com/rss
+- keyname: display_title
+  field_type: string
+  name: Title bar text
+  optional: true
+  description: Optional. Replace the title shown at the bottom of the screen.
+  placeholder: My Feed Name
+- keyname: icon_url
+  field_type: url
+  name: Custom title-bar icon
+  optional: true
+  description: Optional. Paste a direct link to a image to replace the title-bar icon.
+  placeholder: https://example.com/favicon.ico
+- keyname: about
+  name: About This Plugin
+  category: news
+  field_type: author_bio
+  description: |
+    Beautiful RSS News turns your favorite publications into a beautiful news briefing made for TRMNL. Start with our curated selections or add publications you already love. Follow one source or combine several in a single feed.
+    <br/><br/>
+    No technical setup is needed. Pick your sources, save the plugin, and enjoy your favorite news in one beautiful feed.
+  github_url: https://github.com/martin2097
+  learn_more_url: https://www.rapavy.cz/
+  email_address: rapavy.mato@gmail.com
+name: Beautiful RSS News
+refresh_interval: 15
