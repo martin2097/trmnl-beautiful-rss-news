@@ -1,0 +1,141 @@
+{% if stories.size > 0 %}
+  <div class="layout layout--col p--3 lg:portrait:hidden h--full">
+    <div class="flex flex--col grow w--full gap--auto">
+      <div class="grid grid--cols-12 gap--large">
+        {% if himg != '' %}
+          <div class="hidden lg:col--span-5">
+            <img class="image image-dither image--cover rounded w--full h--40" src="{{ himg }}">
+          </div>
+          {% assign hero_col = 'col--span-12 lg:col--span-7' %}
+          {% assign hero_box = 'flex flex--col gap--small h--full flex--center-y' %}
+          {% else %}
+          {% assign hero_col = 'col--span-12 flex flex--center-x' %}
+          {% assign hero_box = 'flex flex--col gap--small h--full flex--center-y w--[60cqw]' %}
+        {% endif %}
+        <div class="{{ hero_col }}">
+          <div class="{{ hero_box }}">
+            {% if hdate != '' %}
+              <span class="hidden lg:visible label label--small label--gray">
+                {{ hmeta }}
+              </span>
+            {% endif %}
+            <span class="title title--small w--full" data-clamp="4">
+              {{ htitle }}
+            </span>
+            <span class="description description--small w--full" data-clamp="3">
+              {{ hsum }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="lg:hidden flex flex--row flex--top no-shrink">
+        {% for rec in stories offset: 1 limit: 1 %}
+          {% assign f = rec | split: '|||' %}
+          {% assign stitle = f[1] | strip %}
+          {% assign sum = f[3] | strip %}
+          <div class="flex flex--col gap--small w--full">
+            <span class="title title--small w--full" data-clamp="2">
+              {{ stitle }}
+            </span>
+            <span class="description description--small w--full" data-clamp="2">
+              {{ sum }}
+            </span>
+          </div>
+          {% unless forloop.last %}
+            <div class="w--[1px] bg--gray-65 no-shrink stretch-y"></div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+      <div class="hidden lg:visible">
+        <div class="flex flex--row flex--top gap--large no-shrink">
+          {% for rec in stories offset: 1 limit: 2 %}
+            {% assign f = rec | split: '|||' %}
+            {% assign stitle = f[1] | strip %}
+            {% assign sum = f[3] | strip %}
+            <div class="flex flex--col gap--small w--full">
+              <span class="title title--small w--full" data-clamp="4">
+                {{ stitle }}
+              </span>
+              <span class="description description--small w--full" data-clamp="3">
+                {{ sum }}
+              </span>
+            </div>
+            {% unless forloop.last %}
+              <div class="w--[1px] bg--gray-65 no-shrink stretch-y"></div>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden lg:portrait:visible layout layout--col p--3 lg:p--4 h--full">
+    <div class="flex flex--col h--full w--full gap--auto">
+      <div class="grid grid--cols-8 gap--large w--full">
+        {% if himg != '' %}
+          <div class="col--span-3">
+            <img class="image image-dither image--cover rounded w--full h--44 no-shrink" src="{{ himg }}">
+          </div>
+          {% assign portrait_hero_text = 'col--span-5' %}
+          {% else %}
+          {% assign portrait_hero_text = 'col--span-8' %}
+        {% endif %}
+        <div class="{{ portrait_hero_text }}">
+          <div class="flex flex--col flex--left flex--center-y gap--small h--full w--full">
+            {% if hdate != '' %}
+              <span class="label label--small label--gray self--center">
+                {{ hmeta }}
+              </span>
+            {% endif %}
+            <span class="title title--small" data-clamp="5">
+              {{ htitle }}
+            </span>
+            <span class="description description--base" data-clamp="4">
+              {{ hsum }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="flex flex--col gap--[10px]">
+        {% for rec in stories offset: 1 limit: 2 %}
+          {% assign f = rec | split: '|||' %}
+          {% assign stitle = f[1] | strip %}
+          {% assign sum = f[3] | strip %}
+          {% assign ssource = f[4] | strip %}
+          {% assign sdate = f[5] | strip %}
+          <div class="grid grid--cols-7 gap--none lg:portrait:gap--medium grow">
+            <div class="col--span-7 lg:col--span-5 lg:portrait:col--span-7">
+              <div class="flex flex--col flex--top gap--small h--full">
+                <span class="title title--small w--full" data-clamp="3">
+                  {{ stitle }}
+                </span>
+                <span class="description description--small w--full" data-clamp="3">
+                  {{ sum }}
+                </span>
+              </div>
+            </div>
+          </div>
+          {% unless forloop.last %}
+            <div class="divider"></div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="layout layout--col layout--center">
+    <span class="title">No stories available</span>
+    <span class="description">Waiting for the feed to refresh.</span>
+  </div>
+{% endif %}
+<div class="title_bar">
+  {% if icon_img and icon_img != '' %}
+    <img class="image image-stroke" src="{{ icon_img }}">
+    {% else %}
+    <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}">
+  {% endif %}
+  <span class="title">
+    {{ feed_title }}
+  </span>
+</div>

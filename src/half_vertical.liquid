@@ -1,0 +1,143 @@
+{% if stories.size > 0 %}
+  <div class="layout layout--col p--3 lg:p--4 h--full">
+    <div class="flex flex--col h--full w--full gap--auto">
+      <div class="lg:hidden">
+        <div class="grid grid--cols-8 gap--large w--full h--44">
+          {% if himg != '' %}
+            <div class="col--span-3 h--full">
+              <img class="image image-dither image--cover rounded w--full h--full no-shrink" src="{{ himg }}">
+            </div>
+            {% assign og_hero_text = 'col--span-5' %}
+            {% else %}
+            {% assign og_hero_text = 'col--span-8' %}
+          {% endif %}
+          <div class="{{ og_hero_text }}">
+            <div class="flex flex--col flex--left flex--center-y gap--small h--full w--full">
+              {% if hdate != '' %}
+                <span class="label label--small label--gray self--center">
+                  {{ hmeta }}
+                </span>
+              {% endif %}
+              <span class="title title--small" data-clamp="5">
+                {{ htitle }}
+              </span>
+              <span class="description description--base" data-clamp="5">
+                {{ hsum }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:visible">
+        <div class="flex flex--col flex--left gap--large w--full">
+          {% if himg != '' %}
+            <img class="image image-dither image--cover rounded w--full h--[30cqh] no-shrink lg:portrait:hidden" src="{{ himg }}">
+            <img class="hidden image image-dither image--cover rounded w--full h--[20cqh] no-shrink lg:portrait:visible" src="{{ himg }}">
+          {% endif %}
+          <div class="flex flex--col flex--left gap--small w--full">
+            {% if hdate != '' %}
+              <span class="label label--base label--gray self--center">
+                {{ hmeta }}
+              </span>
+            {% endif %}
+            <span class="title title--base" data-clamp="3">
+              {{ htitle }}
+            </span>
+            <span class="description description--base" data-clamp="3">
+              {{ hsum }}
+            </span>
+          </div>
+        </div>
+      </div>
+      {% for rec in stories offset: 1 limit: 2 %}
+        {% assign f = rec | split: '|||' %}
+        {% assign stitle = f[1] | strip %}
+        {% assign simg = f[2] | strip %}
+        {% assign sum = f[3] | strip %}
+        {% assign ssource = f[4] | strip %}
+        {% assign sdate = f[5] | strip %}
+        <div class="divider"></div>
+        <div class="grid grid--cols-7 gap--none lg:portrait:gap--medium">
+          {% if simg != '' %}
+            <div class="hidden lg:visible lg:col--span-2 lg:portrait:hidden">
+              <img class="image image-dither image--cover rounded w--28 h--32 no-shrink" src="{{ simg }}">
+            </div>
+            {% else %}
+            <div class="hidden lg:visible lg:portrait:hidden lg:col--span-1"></div>
+          {% endif %}
+          <div class="col--span-7 lg:col--span-5 lg:portrait:col--span-7">
+            <div class="flex flex--col flex--top gap--small h--full pt--2 lg:pt--0">
+              {% if sdate != '' %}
+                <span class="hidden lg:visible label label--small label--gray w--full">
+                  {% render 'story_meta' with date: sdate, source: ssource, single: single_feed, tz: trmnl.user.utc_offset %}
+                </span>
+              {% endif %}
+              <span class="title title--small w--full" data-clamp="3">
+                {{ stitle }}
+              </span>
+              <span class="description description--small w--full" data-clamp="3">
+                {{ sum }}
+              </span>
+            </div>
+          </div>
+          {% if simg == '' %}
+            <div class="hidden lg:visible lg:portrait:hidden lg:col--span-1"></div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      {% for rec in stories offset: 3 limit: 1 %}
+        {% assign f = rec | split: '|||' %}
+        {% assign stitle = f[1] | strip %}
+        {% assign simg = f[2] | strip %}
+        {% assign sum = f[3] | strip %}
+        {% assign ssource = f[4] | strip %}
+        {% assign sdate = f[5] | strip %}
+        <div class="divider hidden lg:portrait:visible"></div>
+        <div class="hidden lg:portrait:visible">
+          <div class="grid grid--cols-7 gap--none lg:portrait:gap--medium">
+            {% if simg != '' %}
+              <div class="hidden lg:visible lg:col--span-2 lg:portrait:hidden">
+                <img class="image image-dither image--cover rounded w--28 h--32 no-shrink" src="{{ simg }}">
+              </div>
+              {% else %}
+              <div class="hidden lg:visible lg:portrait:hidden lg:col--span-1"></div>
+            {% endif %}
+            <div class="col--span-7 lg:col--span-5 lg:portrait:col--span-7">
+              <div class="flex flex--col flex--top gap--small h--full">
+                {% if sdate != '' %}
+                  <span class="label label--small label--gray w--full">
+                    {% render 'story_meta' with date: sdate, source: ssource, single: single_feed, tz: trmnl.user.utc_offset %}
+                  </span>
+                {% endif %}
+                <span class="title title--small w--full" data-clamp="3">
+                  {{ stitle }}
+                </span>
+                <span class="description description--small w--full" data-clamp="3">
+                  {{ sum }}
+                </span>
+              </div>
+            </div>
+            {% if simg == '' %}
+              <div class="hidden lg:visible lg:portrait:hidden lg:col--span-1"></div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="layout layout--col layout--center">
+    <span class="title">No stories available</span>
+    <span class="description">Waiting for the feed to refresh.</span>
+  </div>
+{% endif %}
+<div class="title_bar">
+  {% if icon_img and icon_img != '' %}
+    <img class="image image-stroke" src="{{ icon_img }}">
+    {% else %}
+    <img class="image image-stroke" src="data:image/svg+xml;base64,{{ svg_logo | base64_encode }}">
+  {% endif %}
+  <span class="title">
+    {{ feed_title }}
+  </span>
+</div>
