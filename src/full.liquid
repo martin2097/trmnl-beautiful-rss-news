@@ -52,7 +52,7 @@
             <div class="{{ stext }}">
               <div class="flex flex--col flex--top gap--small h--full pt--2 lg:pt--0">
                 {% if sdate != '' %}
-                  <span class="label label--small label--gray w--full">
+                  <span class="label label--small label--gray 1bit:text--black w--full">
                     {% render 'story_meta' with date: sdate, source: ssource, single: single_feed, tz: trmnl.user.utc_offset %}
                   </span>
                 {% endif %}
