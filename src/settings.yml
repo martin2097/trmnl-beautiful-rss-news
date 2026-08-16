@@ -123,7 +123,7 @@ custom_fields:
   placeholder: https://example.com/favicon.ico
 - keyname: about
   name: About This Plugin
-  category: news
+  category: news,custom
   field_type: author_bio
   description: |
     Beautiful RSS News turns your favorite publications into a beautiful news briefing made for TRMNL. Start with our curated selections or add publications you already love. Follow one source or combine several in a single feed.
