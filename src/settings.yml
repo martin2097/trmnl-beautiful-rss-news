@@ -6,33 +6,17 @@ static_data: ''
 polling_verb: get
 framework_version: 3.1.1
 serverless_language: python
+refresh_interval_floor: ''
 polling_url: https://example.com
 polling_headers: ''
 polling_body: ''
 id: 395962
 oauth_enabled: 'false'
 oauth_pkce_enabled: 'no'
-oauth_authorize_url: ''
-oauth_token_url: ''
-oauth_scopes: ''
-oauth_scope_separator: ''
-oauth_refresh_url: ''
-oauth_auth_params: ''
-oauth_token_headers: ''
-oauth_token_site: ''
-oauth_token_params: ''
-oauth_token_request_auth_method: ''
-oauth_body_format: ''
-oauth_token_response_metadata: ''
-oauth_authorization_method: ''
-oauth_refresh_params: ''
-oauth_token_field_name: ''
-oauth_expiry_field_name: ''
-oauth_expiry_strategy: ''
-oauth_fixed_expiry_ms: ''
 custom_fields:
 - keyname: feed_presets_essentials
   field_type: select
+  indexable: true
   multiple: true
   optional: true
   name: Essentials
@@ -49,6 +33,7 @@ custom_fields:
   - Sky News: sky-news-world
 - keyname: feed_presets_topics
   field_type: select
+  indexable: true
   multiple: true
   optional: true
   name: Topics
@@ -76,6 +61,7 @@ custom_fields:
   - "[Arts & Culture] Hyperallergic": hyperallergic
 - keyname: feed_presets_regional
   field_type: select
+  indexable: true
   multiple: true
   optional: true
   name: Regional
